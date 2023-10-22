@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polmarti <polmarti@student.42barcel>       +#+  +:+       +#+        */
+/*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:12:31 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/14 19:12:32 by polmarti         ###   ########.fr       */
+/*   Updated: 2023/10/22 05:55:59 by yaramire         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../includes/ft_printf.h"
 
@@ -16,24 +16,24 @@ int	ft_select_format(char type, va_list apoint, int *cntchr)
 {
 	if (type == '%')
 		ft_putchar('%', cntchr);
-	else if (type == 'c')
+	if (type == 'c')
 		ft_putchar(va_arg(apoint, int), cntchr);
-	else if (type == 's')
+	if (type == 's')
 		ft_putstr(va_arg(apoint, char *), cntchr);
-	else if (type == 'p')
+	if (type == 'p')
 	{
 		ft_putstr("0x", cntchr);
 		if (*cntchr == -1)
 			return (*cntchr);
 		ft_nbase((t_ul)va_arg(apoint, void *), 16, cntchr, "0123456789abcdef");
 	}
-	else if (type == 'd' || type == 'i')
+	if (type == 'd' || type == 'i')
 		ft_putnbr(va_arg(apoint, int), cntchr);
-	else if (type == 'u')
+	if (type == 'u')
 		ft_nbase(va_arg(apoint, unsigned int), 10, cntchr, "0123456789");
-	else if (type == 'x')
+	if (type == 'x')
 		ft_nbase(va_arg(apoint, unsigned int), 16, cntchr, "0123456789abcdef");
-	else if (type == 'X')
+	if (type == 'X')
 		ft_nbase(va_arg(apoint, unsigned int), 16, cntchr, "0123456789ABCDEF");
 	return (*cntchr);
 }
