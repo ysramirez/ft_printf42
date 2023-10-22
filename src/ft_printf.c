@@ -6,7 +6,7 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:12:31 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/22 05:55:59 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/22 06:04:16 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,8 +23,6 @@ int	ft_select_format(char type, va_list apoint, int *cntchr)
 	if (type == 'p')
 	{
 		ft_putstr("0x", cntchr);
-		if (*cntchr == -1)
-			return (*cntchr);
 		ft_nbase((t_ul)va_arg(apoint, void *), 16, cntchr, "0123456789abcdef");
 	}
 	if (type == 'd' || type == 'i')
