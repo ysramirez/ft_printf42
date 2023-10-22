@@ -6,7 +6,7 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:12:31 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/22 06:04:16 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/22 06:37:04 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,8 +14,6 @@
 
 int	ft_select_format(char type, va_list apoint, int *cntchr)
 {
-	if (type == '%')
-		ft_putchar('%', cntchr);
 	if (type == 'c')
 		ft_putchar(va_arg(apoint, int), cntchr);
 	if (type == 's')
@@ -48,7 +46,10 @@ int	ft_printf(const char *p, ...)
 		if (*p == '%')
 		{
 			p++;
-			ft_select_format(*p, ap, &cntchr);
+			if (*p == '%')
+				ft_putchar('%', &cntchr);
+			else
+				ft_select_format(*p, ap, &cntchr);
 		}
 		else
 			ft_putchar(*p, &cntchr);
