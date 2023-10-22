@@ -1,0 +1,6 @@
+.vscode
+a.out
+*.a
+main.c
+src/*.o
+src/*.d

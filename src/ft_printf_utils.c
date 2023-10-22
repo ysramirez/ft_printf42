@@ -1,26 +1,32 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polmarti <polmarti@student.42barcel>       +#+  +:+       +#+        */
+/*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:13:57 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/14 19:13:59 by polmarti         ###   ########.fr       */
+/*   Updated: 2023/10/22 08:21:41 by yaramire         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../includes/ft_printf.h"
 
-void	ft_putchar(int c, int *cntchr)
+
+int	ft_write(int c)
+{
+	return (write(1, &c, 1));
+}
+
+int	ft_putchar(int c, int *cntchr)
 {
 	int	check;
 
-	check = write(1, &c, 1);
+	check = ft_write(c);
 	if (check != -1)
-		(*cntchr)++;
+		return ((*cntchr)++);
 	else
-		*cntchr = -1;
+		return (*cntchr = -1);
 }
 
 void	ft_putstr(char *str, int *cntchr)

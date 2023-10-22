@@ -6,13 +6,13 @@
 #    By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:30:20 by polmarti          #+#    #+#              #
-#    Updated: 2023/10/22 05:37:55 by yaramire         ###   ########.fr        #
+#    Updated: 2023/10/22 09:22:39 by yaramire         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = libftprintf.a
 
-SRCS =  src/ft_printf_utils.c src/ft_printf.c 
+SRCS =  src/ft_printf_utils.c src/ft_printf_utils_list.c src/ft_printf.c
 
 INCLUDES = includes/ft_print.h
 
