@@ -6,7 +6,7 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:12:31 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/27 18:56:24 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:37:28 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,23 +27,15 @@ static int	char_position(const char *str, char c)
 	return (-1);
 }
 
-int	ft_select_format(char type, va_list apoint, int *cntchr)
-{
-	int	(**operaciones)(va_list, int *);
-
-	operaciones = (int (**)(va_list, int *))set_functions();
-	if (operaciones == NULL)
-		return (*cntchr = -1);
-	operaciones[char_position("cspdiuxX", type)](apoint, cntchr);
-	free(operaciones);
-	return (*cntchr);
-}
-
 int	ft_printf(const char *p, ...)
 {
 	va_list	ap;
 	int		cntchr;
+	int		(**operaciones)(va_list, int *);
 
+	operaciones = (int (**)(va_list, int *))set_functions();
+	if (operaciones == NULL)
+		return (-1);
 	cntchr = 0;
 	va_start(ap, p);
 	while (*p && cntchr != -1)
@@ -53,12 +45,13 @@ int	ft_printf(const char *p, ...)
 			if (*++p == '%')
 				ft_putchar('%', &cntchr);
 			else
-				ft_select_format(*p, ap, &cntchr);
+				operaciones[char_position("cspdiuxX", *p)](ap, &cntchr);
 		}
 		else
 			ft_putchar(*p, &cntchr);
 		p++;
 	}
 	va_end(ap);
+	free(operaciones);
 	return (cntchr);
 }

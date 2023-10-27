@@ -6,36 +6,23 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:13:57 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/22 08:21:41 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:17:00 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/ft_printf.h"
 
-
-int	ft_write(int c)
-{
-	return (write(1, &c, 1));
-}
-
 int	ft_putchar(int c, int *cntchr)
 {
-	int	check;
-
-	check = ft_write(c);
-	if (check != -1)
+	if ((write(1, &c, 1)) != -1)
 		return ((*cntchr)++);
-	else
-		return (*cntchr = -1);
+	return (*cntchr = -1);
 }
 
 void	ft_putstr(char *str, int *cntchr)
 {
 	if (!str)
-	{
-		ft_putstr("(null)", cntchr);
-		return ;
-	}
+		return (ft_putstr("(null)", cntchr));
 	while (*str)
 	{
 		ft_putchar(*str, cntchr);
@@ -67,8 +54,8 @@ void	ft_putnbr(int nb, int *cntchr)
 	if (*cntchr == -1)
 		return ;
 	if (nb == -2147483648)
-		ft_putstr("-2147483648", cntchr);
-	else if (nb < 0)
+		return (ft_putstr("-2147483648", cntchr));
+	if (nb < 0)
 	{
 		ft_putchar('-', cntchr);
 		if (*cntchr == -1)
