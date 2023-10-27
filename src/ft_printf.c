@@ -6,7 +6,7 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:12:31 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/27 18:25:29 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:50:32 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,12 +32,9 @@ int	ft_select_format(char type, va_list apoint, int *cntchr)
 	int	(**operaciones)(va_list, int *);
 
 	operaciones = (int (**)(va_list, int *))set_functions();
-
 	if (operaciones == NULL)
 		return (*cntchr = -1);
-
 	operaciones[char_position("cspdiuxX", type)](apoint, cntchr);
-
 	free(operaciones);
 	return (*cntchr);
 }
@@ -53,8 +50,7 @@ int	ft_printf(const char *p, ...)
 	{
 		if (*p == '%')
 		{
-			p++;
-			if (*p == '%')
+			if (*++p == '%')
 				ft_putchar('%', &cntchr);
 			else
 				ft_select_format(*p, ap, &cntchr);
