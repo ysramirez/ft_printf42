@@ -6,7 +6,7 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:41:35 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/22 10:00:54 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:57:47 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,6 +29,9 @@ int		ft_putchar_list(va_list apoint, int *cntchr);
 int		ft_putstr_list(va_list apoint, int *cntchr);
 int		ft_putpointer_list(va_list apoint, int *cntchr);
 int		ft_putnbr_list(va_list apoint, int *cntchr);
+int		ft_putinteger_list(va_list apoint, int *cntchr);
+int		ft_putexa_list(va_list apoint, int *cntchr);
+int		ft_putexa_caps_list(va_list apoint, int *cntchr);
 
 int		ft_putchar(int c, int *cntchr);
 void	ft_putstr(char *str, int *cntchr);

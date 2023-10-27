@@ -13,9 +13,14 @@ void	**set_functions(void)
 	operaciones[2] = ft_putpointer_list;
 	operaciones[3] = ft_putnbr_list;
 	operaciones[4] = ft_putnbr_list;
+	operaciones[5] = ft_putinteger_list;
+	operaciones[6] = ft_putexa_list;
+	operaciones[7] = ft_putexa_caps_list;
 
 	return ((void **)operaciones);
 }
+
+
 
 int	ft_putchar_list(va_list apoint, int *cntchr)
 {
