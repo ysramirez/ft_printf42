@@ -6,35 +6,38 @@
 /*   By: yaramire <yaramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 19:12:31 by polmarti          #+#    #+#             */
-/*   Updated: 2023/10/27 17:54:45 by yaramire         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:25:29 by yaramire         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/ft_printf.h"
+
+static int	char_position(const char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+
+	return (-1);
+}
 
 int	ft_select_format(char type, va_list apoint, int *cntchr)
 {
 	int	(**operaciones)(va_list, int *);
 
 	operaciones = (int (**)(va_list, int *))set_functions();
+
 	if (operaciones == NULL)
 		return (*cntchr = -1);
-	if (type == 'c')
-		operaciones[0](apoint, cntchr);
-	if (type == 's')
-		operaciones[1](apoint, cntchr);
-	if (type == 'p')
-		operaciones[2](apoint, cntchr);
-	if (type == 'd')
-		operaciones[3](apoint, cntchr);
-	if (type == 'i')
-		operaciones[4](apoint, cntchr);
-	if (type == 'u')
-		operaciones[5](apoint, cntchr);
-	if (type == 'x')
-		operaciones[6](apoint, cntchr);
-	if (type == 'X')
-		operaciones[7](apoint, cntchr);
+
+	operaciones[char_position("cspdiuxX", type)](apoint, cntchr);
+
 	free(operaciones);
 	return (*cntchr);
 }
